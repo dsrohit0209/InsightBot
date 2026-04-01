@@ -1,0 +1,23 @@
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+
+
+# Environment variables
+.env
+
+# OS files
+.DS_Store
+
+#Unwanted files
+test.py
+Note/
+Chatbot.ipynb
+create_jira.py 
+Jira_fetch.py  
+test_fetch.py 
+test.py
