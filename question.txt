@@ -1,0 +1,91 @@
+1. What problem are you solving?
+
+Teams using Jira often struggle to extract meaningful insights quickly.
+Our system, InsightBot, transforms raw Jira data into actionable intelligence by combining retrieval-augmented generation and LLM.
+
+2. Why do we have to build an agent for this, can't we just access it from Jira using JQL query?
+
+we can use JQL query to find issues but it itself is not enough, it is static and require manual configuration.
+Using agent we can have access to natural languages, like instead of writing project = 'AI_Hackathon' ans status = "Open"
+We can simply ask "Show me all the open issues in AI_Hackathon".
+Early tests show a 30-40% reduction in time spent on ticket lookups.
+Besides that, it is accessible for everyone. One can interact without needing to learn JQL query.
+
+3. What makes your Project unique?
+
+Unlike traditional Jira dashboards or chatbots, our system:
+Uses semantic search (FAISS) instead of keyword search
+Provides decision-making suggestions, not just answers.
+
+4. How do you ensure adoption across teams who are already comfortable with Jira?
+
+The agent gives quick summaries and cross-project insights that Jira's interface makes cumbersome.
+By meeting people in the tools they already use and saving them time, adoption happen because it feels like an enhancement, not a disruption.
+
+Technical Questions
+5. What is RAG and why did you use it?
+
+RAG (Retrieval-Augmented Generation) combines:
+
+Retrieval → fetching relevant Jira issues using FAISS
+Generation → LLM generates answers using that context
+
+This ensures:
+Up-to-date answers
+Reduced hallucination
+More accurate responses
+
+6. Why FAISS?
+
+FAISS enables fast similarity search over embeddings.
+It allows us to retrieve semantically relevant Jira issues even if the query wording is different.
+
+7. Which embedding model did you use and why?
+
+We used all-MiniLM-L6-v2 because:
+
+It is Lightweight and fast
+Has Good semantic understanding
+and is suitable for real-time applications
+
+8. How do you prevent hallucination?
+
+We ground responses using:
+
+Retrieved Jira context (RAG)
+Structured prompts
+Limiting answer scope to context
+
+9. Could this agent evolve into a broader "work assistant" beyond Jira?
+
+Yes. Jira is the starting point, but the same architecture can extend to Sharepoint, Confluence, Github oe other tools 
+creating a unified work assistant.
+
+10. How does the system scale when Jira has tens of thousands of issues across projects?
+
+Vector DBs are designed for high-volume embeddings. Pagination ensures ingestion is complete and indexing allows fast retrieval
+even with large datasets.
+
+Business value 
+
+11. How does your project save time?
+
+Developers and managers no longer need to manually search or analyze Jira tickets.
+They can simply ask questions in natural language and get instant answers, saving 30–50% of their time.
+
+12. How does it improve productivity?
+
+By prioritizing tasks, highlighting critical issues, and reducing manual effort, the system allows teams to focus on actual development 
+rather than Jira management.
+
+13. What is the long-term business value?
+
+Long-term, it can evolve into a full AI operations assistant, integrating with multiple tools and becoming a central decision-making system for organizations.
+
+14. How do you quantify ROI?
+
+We calculate ROI by measuring time saved by developers and managers, converting it into monetary value, and comparing it with operational costs. 
+In a typical team scenario, our system delivers around 4000–5000% ROI with a payback period of less than a week.
+ROI = (Time Saved × Hourly Cost − System Cost) / System Cost
+
+
