@@ -42,6 +42,7 @@ index.add(np.array(vectors, dtype=np.float32))
 # Save index
 faiss.write_index(index, VECTOR_PATH)
 
+
 print(VECTOR_PATH)
 print("✅ FAISS index created successfully!")
 print("Saved at:", VECTOR_PATH)
